@@ -21,14 +21,13 @@ public class Location implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column()
+
     @OneToOne
     private Address address;
     
-    @OneToMany
-    private List<String> landline;
+    @Column()
+    private String landline;
     
-    @OneToMany
+    @OneToMany(targetEntity=Area.class)
     private List<Area> areas;
 }

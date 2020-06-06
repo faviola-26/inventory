@@ -27,7 +27,7 @@ public class Section implements Serializable{
     @Column(nullable = false)
     private Double capacity;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity = Category.class)
+    @OneToMany(targetEntity=Category.class)
     private List<Category> category;
 
     public Integer getId() {

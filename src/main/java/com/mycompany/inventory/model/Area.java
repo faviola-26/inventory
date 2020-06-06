@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.springframework.stereotype.Component;
+
+@Component
 
 @Table(name = "section", catalog = "inventory")
 @Entity
@@ -21,7 +24,7 @@ public class Area implements Serializable{
     @Column(nullable = false, length = 50)
     private String identifier;
     
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Rack.class)
     private List<Rack> racks;
 
     public Integer getId() {
