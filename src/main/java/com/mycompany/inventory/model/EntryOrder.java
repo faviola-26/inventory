@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "product_registry")
+@Table(name = "inventory_product_registry")
 public class EntryOrder implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

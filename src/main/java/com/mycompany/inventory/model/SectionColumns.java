@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
  * @author david.martinez
  */
 @Component
-@Table(name = "inventory_section_rows")
+@Table(name = "inventory_section_columns")
 @Entity
 public class SectionColumns implements Serializable {
     
@@ -29,6 +30,7 @@ public class SectionColumns implements Serializable {
     private Integer id;
     
     @OneToMany(targetEntity = Section.class)
+    @JoinColumn(name ="section_rows")
     public List<Section> sectionRows;
 
     public Integer getId() {

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Component
-@Table(name = "rack")
+@Table(name = "inventory_srack")
 @Entity
 public class Rack implements Serializable{
     @Id
