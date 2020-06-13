@@ -36,5 +36,4 @@ public class AddressTest {
         manager.persist(location);
         transaction.commit();
     }
-
 }
