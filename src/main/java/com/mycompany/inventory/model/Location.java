@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "location", catalog = "inventory")
+@Table(name = "location")
 @Scope("prototype")
 public class Location implements Serializable{
     @Id

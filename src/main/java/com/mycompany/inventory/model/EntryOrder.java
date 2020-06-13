@@ -14,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
+import org.springframework.stereotype.Component;
 
+@Component
 @Entity
-@Table(name = "product_registry", catalog = "inventory")
+@Table(name = "product_registry")
 public class EntryOrder implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,8 +13,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Component
-
-@Table(name = "section", catalog = "inventory")
+@Table(name = "section")
 @Entity
 public class Area implements Serializable{
     @Id

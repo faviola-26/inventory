@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Component
-@Table(name = "rack", catalog = "inventory")
+@Table(name = "rack")
 @Entity
 public class Rack implements Serializable{
     @Id
@@ -23,8 +23,8 @@ public class Rack implements Serializable{
     @Column(nullable = false, length = 20)
     private String identifier;
     
-    @OneToOne(fetch = FetchType.EAGER, targetEntity=SectionRows.class)
-    private List<SectionRows> sectionColumns;
+    @OneToOne(fetch = FetchType.EAGER, targetEntity=SectionColumns.class)
+    private List<SectionColumns> sectionColumns;
 
     public Integer getId() {
         return id;
@@ -42,11 +42,11 @@ public class Rack implements Serializable{
         this.identifier = identifier;
     }
 
-    public List<SectionRows> getSectionColumns() {
+    public List<SectionColumns> getSectionColumns() {
         return sectionColumns;
     }
 
-    public void setSectionColumns(List<SectionRows> sectionColumns) {
+    public void setSectionColumns(List<SectionColumns> sectionColumns) {
         this.sectionColumns = sectionColumns;
     }    
 }

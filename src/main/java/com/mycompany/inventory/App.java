@@ -1,14 +1,15 @@
 package com.mycompany.inventory;
 
-import com.mycompany.catalog.model.Category;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.PropertySource;
 
-
-@Import({Category.class})
 @SpringBootApplication
+@EntityScan(basePackages = {"com.mycompany.catalog.model", "com.mycompany.inventory.model"})
+@PropertySource("classpath:dev_inventory.properties")
 public class App {
+    
     public static void main(String[] args){
         SpringApplication.run(App.class, args);
     }

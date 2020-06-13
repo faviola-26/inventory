@@ -9,13 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "section", catalog = "inventory")
+@Table(name = "inventory_section")
 public class Section implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,8 @@ public class Section implements Serializable{
     @Column(nullable = false)
     private Double capacity;
     
-    @OneToMany(targetEntity=Category.class)
+    @OneToMany(fetch = FetchType.EAGER, targetEntity=Category.class)
+    @JoinColumn(name="product_category")
     private List<Category> category;
 
     public Integer getId() {

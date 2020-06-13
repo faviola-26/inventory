@@ -20,9 +20,9 @@ import org.springframework.stereotype.Component;
  * @author david.martinez
  */
 @Component
-@Table(name = "section_rows", catalog = "inventory")
+@Table(name = "inventory_section_rows")
 @Entity
-public class SectionRows implements Serializable {
+public class SectionColumns implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
