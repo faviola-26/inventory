@@ -1,4 +1,4 @@
-package com.mycompany.inventory.unit.model;
+package com.mycompany.app.unit.model;
 
 import com.mycompany.inventory.model.Location;
 import javax.persistence.EntityManager;
