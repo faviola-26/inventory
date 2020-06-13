@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "inventory_product_registry")
+@Table(name = "inventory_entry_order")
 public class EntryOrder implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,8 @@ public class EntryOrder implements Serializable{
     @ElementCollection
     @CollectionTable(
             name="inventory_entry_product",
-            joinColumns={@JoinColumn(name="entry_order_id", referencedColumnName="id")})
+            joinColumns={@JoinColumn(name="entry_order_id", referencedColumnName="id"),
+                         @JoinColumn(name="product_id", referencedColumnName="id")})
     @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")
     private Map<Product, Integer> products = new HashMap<>();
