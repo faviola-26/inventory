@@ -12,25 +12,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 @Entity
-@Table(name = "inventory_section")
-public class Section implements Serializable{
+@Table(name = "inventory_section_row")
+public class SectionRow implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Null(message = "Id not assignable")
     private Integer id;
     
-    @Column(nullable = false, length = 3)
-    private String identifier;
-    
     @Column(nullable = false)
+    @Max(value = 99)
+    @NotNull
     private Double capacity;
     
-    @OneToMany(fetch = FetchType.EAGER, targetEntity=Category.class)
+    @OneToMany(fetch = FetchType.LAZY, targetEntity=Category.class)
     @JoinColumn(name="product_category")
     private List<Category> category;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<ActiveProduct> products;
 
     public Integer getId() {
         return id;
@@ -38,14 +46,6 @@ public class Section implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     public Double getCapacity() {
@@ -62,6 +62,14 @@ public class Section implements Serializable{
 
     public void setCategory(List<Category> category) {
         this.category = category;
+    }
+
+    public List<ActiveProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ActiveProduct> products) {
+        this.products = products;
     }
     
     

@@ -10,20 +10,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Table(name = "inventory_srack")
+@Scope("prototype")
+@Table(name = "inventory_rack")
 @Entity
 public class Rack implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Null(message = "Id not assignable")
     private Integer id;
        
     @Column(nullable = false, length = 20)
+    @Size(min = 2, max = 8, message = "value is out of range")
+    @NotNull
     private String identifier;
     
-    @OneToOne(fetch = FetchType.EAGER, targetEntity=SectionColumns.class)
+    @OneToOne(fetch = FetchType.LAZY, targetEntity=SectionColumns.class)
     private List<SectionColumns> sectionColumns;
 
     public Integer getId() {
