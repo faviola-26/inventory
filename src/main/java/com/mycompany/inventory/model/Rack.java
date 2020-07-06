@@ -27,12 +27,12 @@ public class Rack implements Serializable{
     private Integer id;
        
     @Column(nullable = false, length = 20)
-    @Size(min = 2, max = 8, message = "value is out of range")
+    @Size(min = 2, max = 20, message = "value is out of range")
     @NotNull
     private String identifier;
     
-    @OneToOne(fetch = FetchType.LAZY, targetEntity=SectionColumns.class)
-    private List<SectionColumns> sectionColumns;
+    @OneToOne(fetch = FetchType.LAZY, targetEntity=SectionColumn.class)
+    private List<SectionColumn> sectionColumns;
 
     public Integer getId() {
         return id;
@@ -50,11 +50,11 @@ public class Rack implements Serializable{
         this.identifier = identifier;
     }
 
-    public List<SectionColumns> getSectionColumns() {
+    public List<SectionColumn> getSectionColumns() {
         return sectionColumns;
     }
 
-    public void setSectionColumns(List<SectionColumns> sectionColumns) {
+    public void setSectionColumns(List<SectionColumn> sectionColumns) {
         this.sectionColumns = sectionColumns;
     }    
 }

@@ -30,7 +30,7 @@ public class Location implements Serializable{
     @OneToOne
     private Address address;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 15)
     @NotNull
     @NotEmpty
     @Size(min = 10, max = 15, message = "Value is out of range")

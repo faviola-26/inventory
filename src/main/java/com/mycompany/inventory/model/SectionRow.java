@@ -35,10 +35,10 @@ public class SectionRow implements Serializable{
     
     @OneToMany(fetch = FetchType.LAZY, targetEntity=Category.class)
     @JoinColumn(name="product_category")
-    private List<Category> category;
+    private List<Category> categories;
     
     @OneToMany(fetch = FetchType.EAGER)
-    private List<ActiveProduct> products;
+    private List<ActiveProduct> activeProducts;
 
     public Integer getId() {
         return id;
@@ -57,19 +57,19 @@ public class SectionRow implements Serializable{
     }
 
     public List<Category> getCategory() {
-        return category;
+        return categories;
     }
 
     public void setCategory(List<Category> category) {
-        this.category = category;
+        this.categories = category;
     }
 
     public List<ActiveProduct> getProducts() {
-        return products;
+        return activeProducts;
     }
 
     public void setProducts(List<ActiveProduct> products) {
-        this.products = products;
+        this.activeProducts = products;
     }
     
     

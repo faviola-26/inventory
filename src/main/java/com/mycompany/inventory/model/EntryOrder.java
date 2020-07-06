@@ -14,11 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Format;
 import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -46,8 +44,8 @@ public class EntryOrder implements Serializable{
     
     @ElementCollection
     @CollectionTable(
-            name="inventory_entry_product",
-            joinColumns={@JoinColumn(name="entry_order_id", referencedColumnName="id"),
+            name="inventory_entry_order_product",
+            joinColumns={@JoinColumn(name="id_inventory_entry_order", referencedColumnName="id"),
                          @JoinColumn(name="product_id", referencedColumnName="id")})
     @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")

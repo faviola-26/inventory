@@ -1,4 +1,4 @@
-package com.mycompany.inventory.model;
+ package com.mycompany.inventory.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-@Table(name = "inventory_section_columns")
+@Table(name = "inventory_section_column")
 @Entity
-public class SectionColumns implements Serializable {
+public class SectionColumn implements Serializable {
     @Null(message = "Id not assignable")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
