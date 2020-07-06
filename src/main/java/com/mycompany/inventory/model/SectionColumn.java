@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.mycompany.inventory.model;
+ package com.mycompany.inventory.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,24 +9,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author david.martinez
- */
+
 @Component
-@Table(name = "inventory_section_columns")
+@Scope("prototype")
+@Table(name = "inventory_section_column")
 @Entity
-public class SectionColumns implements Serializable {
-    
+public class SectionColumn implements Serializable {
+    @Null(message = "Id not assignable")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @OneToMany(targetEntity = Section.class)
+    @OneToMany(targetEntity = SectionRow.class)
     @JoinColumn(name ="section_rows")
-    public List<Section> sectionRows;
+    public List<SectionRow> sectionRows;
 
     public Integer getId() {
         return id;
@@ -41,11 +36,11 @@ public class SectionColumns implements Serializable {
         this.id = id;
     }
 
-    public List<Section> getSectionRows() {
+    public List<SectionRow> getSectionRows() {
         return sectionRows;
     }
 
-    public void setSectionRows(List<Section> sectionRows) {
+    public void setSectionRows(List<SectionRow> sectionRows) {
         this.sectionRows = sectionRows;
     }
    

@@ -14,29 +14,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+
 @Component
+@Scope("prototype")
 @Entity
 @Table(name = "inventory_entry_order")
 public class EntryOrder implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Null(message = "Id not assignable")
     private Integer id;
     
     @Column(nullable = false, length = 10)
+    @NotNull
+    @NotEmpty
+    @DateTimeFormat(pattern = "yyyy/mm/dd")
     private String date;
     
-    @Column(nullable = false)
-    private Double orderCost;
-    
-    @Column(nullable = false, length = 4)
+    @Column(nullable = false, length = 6)
+    @DateTimeFormat(pattern = "hh:mm:ss")
     private String hour;
     
     @ElementCollection
     @CollectionTable(
-            name="inventory_entry_product",
-            joinColumns={@JoinColumn(name="entry_order_id", referencedColumnName="id"),
+            name="inventory_entry_order_product",
+            joinColumns={@JoinColumn(name="id_inventory_entry_order", referencedColumnName="id"),
                          @JoinColumn(name="product_id", referencedColumnName="id")})
     @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")
@@ -56,14 +65,6 @@ public class EntryOrder implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public Double getOrderCost() {
-        return orderCost;
-    }
-
-    public void setOrderCost(Double orderCost) {
-        this.orderCost = orderCost;
     }
 
     public String getHour() {
