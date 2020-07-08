@@ -1,6 +1,5 @@
 package com.mycompany.inventory.unit.model;
 
-import com.mycompany.catalog.model.Product;
 import com.mycompany.inventory.model.ActiveProduct;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
@@ -18,17 +17,12 @@ public class ActiveProductTest {
     private ActiveProduct activeProduct;
     
     @Autowired
-    private Product product;
-    
-    @Autowired
     private EntityManagerFactory factory;
     
     @BeforeEach
     public void init(){
-        product.setId(Long.parseLong("1"));
         activeProduct.setId(null);
         activeProduct.setQuantity(Integer.SIZE);
-        activeProduct.setProduct(product);
     }
     
     @Test

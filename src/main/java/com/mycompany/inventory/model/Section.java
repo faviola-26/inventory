@@ -1,4 +1,4 @@
-package com.mycompany.inventory.model;
+ package com.mycompany.inventory.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,15 +19,22 @@ import javax.validation.constraints.Null;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @Scope("prototype")
+@Table(name = "_section")
 @Entity
-@Table(name = "section_row")
-public class SectionRow implements Serializable{
+public class Section implements Serializable {
+    @Null(message = "Id not assignable")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Null(message = "Id not assignable")
     private Integer id;
+    
+    @Column(nullable = false)
+    private Integer columnY;
+    
+    @Column(nullable = false)
+    private Integer rowX;
     
     @Column(nullable = false)
     @Max(value = 99)
@@ -35,8 +42,8 @@ public class SectionRow implements Serializable{
     private Double capacity;
     
     @ElementCollection
-    @CollectionTable(name = "section_row_category_id", joinColumns = @JoinColumn(name = "section_row_id"))
-    @Column(name = "category_id")
+    @CollectionTable(name = "section_categories", joinColumns = @JoinColumn(name = "section_id"))
+    @Column(name = "product_category_id")
     private List<Integer> categories;
     
     @OneToMany(fetch = FetchType.EAGER)
@@ -50,6 +57,22 @@ public class SectionRow implements Serializable{
         this.id = id;
     }
 
+    public Integer getColumnY() {
+        return columnY;
+    }
+
+    public void setColumnY(Integer columnY) {
+        this.columnY = columnY;
+    }
+
+    public Integer getRowX() {
+        return rowX;
+    }
+
+    public void setRowX(Integer rowX) {
+        this.rowX = rowX;
+    }
+
     public Double getCapacity() {
         return capacity;
     }
@@ -58,21 +81,21 @@ public class SectionRow implements Serializable{
         this.capacity = capacity;
     }
 
-    public List<Integer> getCategory() {
+    public List<Integer> getCategories() {
         return categories;
     }
 
-    public void setCategory(List<Integer> categories) {
+    public void setCategories(List<Integer> categories) {
         this.categories = categories;
     }
 
-    public List<ActiveProduct> getProducts() {
+    public List<ActiveProduct> getActiveProducts() {
         return activeProducts;
     }
 
-    public void setProducts(List<ActiveProduct> products) {
-        this.activeProducts = products;
+    public void setActiveProducts(List<ActiveProduct> activeProducts) {
+        this.activeProducts = activeProducts;
     }
-    
+
     
 }

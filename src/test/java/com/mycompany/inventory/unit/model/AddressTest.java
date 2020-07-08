@@ -23,10 +23,6 @@ public class AddressTest {
     
     @Test
     public void testSchema(){
-        EntityManager manager = factory.createEntityManager();
-        EntityTransaction transaction = manager.getTransaction();
-        transaction.begin();
-        manager.persist(location);
-        transaction.commit();
+        
     }
 }

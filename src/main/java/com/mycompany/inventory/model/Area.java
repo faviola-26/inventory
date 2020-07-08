@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-@Table(name = "inventory_area")
+@Table(name = "area")
 @Entity
 public class Area implements Serializable{
     @Id

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-@Table(name = "inventory_rack")
+@Table(name = "rack")
 @Entity
 public class Rack implements Serializable{
     @Id
@@ -31,8 +31,8 @@ public class Rack implements Serializable{
     @NotNull
     private String identifier;
     
-    @OneToOne(fetch = FetchType.LAZY, targetEntity=SectionColumn.class)
-    private List<SectionColumn> sectionColumns;
+    @OneToOne(fetch = FetchType.LAZY, targetEntity=Section.class)
+    private List<Section> sections;
 
     public Integer getId() {
         return id;
@@ -50,11 +50,11 @@ public class Rack implements Serializable{
         this.identifier = identifier;
     }
 
-    public List<SectionColumn> getSectionColumns() {
-        return sectionColumns;
+    public List<Section> getSections() {
+        return sections;
     }
 
-    public void setSectionColumns(List<SectionColumn> sectionColumns) {
-        this.sectionColumns = sectionColumns;
-    }    
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
 }

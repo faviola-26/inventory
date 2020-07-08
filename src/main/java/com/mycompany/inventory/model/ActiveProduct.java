@@ -1,13 +1,15 @@
 package com.mycompany.inventory.model;
 
-import com.mycompany.catalog.model.Product;
 import java.io.Serializable;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -20,15 +22,15 @@ import org.springframework.stereotype.Component;
 @Entity
 @Component
 @Scope("prototype")
-@Table(name = "active_product", catalog = "inventory")
+@Table(name = "active_product")
 public class ActiveProduct implements Serializable{
     @Id
     @Null(message = "Id not assignable")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    private Product product;
+    @Column(name = "catalog_product_id")
+    private Long product;
     
     @Column(nullable = false)
     @NotNull
@@ -44,14 +46,14 @@ public class ActiveProduct implements Serializable{
         this.id = id;
     }
 
-    public Product getProduct() {
+    public Long getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Long product) {
         this.product = product;
     }
-
+    
     public Integer getQuantity() {
         return quantity;
     }

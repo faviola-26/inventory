@@ -1,6 +1,5 @@
 package com.mycompany.inventory.model;
 
-import com.mycompany.catalog.model.Product;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,31 +24,30 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 @Entity
-@Table(name = "inventory_entry_order")
+@Table(name = "entry_order")
 public class EntryOrder implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Null(message = "Id not assignable")
     private Integer id;
     
-    @Column(nullable = false, length = 10)
+    @Column(name = "created_date", nullable = false, length = 10)
     @NotNull
     @NotEmpty
     @DateTimeFormat(pattern = "yyyy/mm/dd")
-    private String date;
+    private String createdHour;
     
-    @Column(nullable = false, length = 6)
+    @Column(name = "created_hour", nullable = false, length = 6)
     @DateTimeFormat(pattern = "hh:mm:ss")
-    private String hour;
+    private String createdDate;
     
     @ElementCollection
     @CollectionTable(
-            name="inventory_entry_order_product",
-            joinColumns={@JoinColumn(name="id_inventory_entry_order", referencedColumnName="id"),
-                         @JoinColumn(name="product_id", referencedColumnName="id")})
-    @MapKeyColumn(name = "product_id")
+            name="entry_order_product",
+            joinColumns={@JoinColumn(name="entry_order_id", referencedColumnName="id")})
+    @MapKeyColumn(name = "catalog_product_id")
     @Column(name = "quantity")
-    private Map<Product, Integer> products = new HashMap<>();
+    private Map<Long, Integer> products = new HashMap<>();
 
     public Integer getId() {
         return id;
@@ -59,27 +57,27 @@ public class EntryOrder implements Serializable{
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public String getCreatedHour() {
+        return createdHour;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCreatedHour(String createdHour) {
+        this.createdHour = createdHour;
     }
 
-    public String getHour() {
-        return hour;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Map<Product, Integer> getProducts() {
+    public Map<Long, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(Map<Product, Integer> products) {
+    public void setProducts(Map<Long, Integer> products) {
         this.products = products;
     }
 }
