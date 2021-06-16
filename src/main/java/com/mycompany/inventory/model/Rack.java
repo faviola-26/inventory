@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,8 +32,8 @@ public class Rack implements Serializable{
     @NotNull
     private String identifier;
     
-    @OneToOne(fetch = FetchType.LAZY, targetEntity=Section.class)
-    private List<Section> sections;
+    @OneToMany(fetch = FetchType.LAZY, targetEntity=Row.class)
+    private List<Row> sections;
 
     public Integer getId() {
         return id;
@@ -50,11 +51,11 @@ public class Rack implements Serializable{
         this.identifier = identifier;
     }
 
-    public List<Section> getSections() {
+    public List<Row> getSections() {
         return sections;
     }
 
-    public void setSections(List<Section> sections) {
+    public void setSections(List<Row> sections) {
         this.sections = sections;
     }
 }

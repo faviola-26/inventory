@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public interface LocationRepository extends JpaRepository<Location, Long>, CustomLocationRepository{
+public interface LocationRepository extends JpaRepository<Location, Long>, LocationCustomRepository{
     
 }

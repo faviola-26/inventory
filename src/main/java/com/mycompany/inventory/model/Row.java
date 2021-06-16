@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 @Entity
 @Table(name = "section_row")
-public class SectionRow implements Serializable{
+public class Row implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Null(message = "Id not assignable")
